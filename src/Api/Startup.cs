@@ -1,15 +1,10 @@
+using Core.Services;
+using Core.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FeeCalculator
 {
@@ -27,6 +22,8 @@ namespace FeeCalculator
             services.AddControllers();
 
             services.AddSwaggerGen();
+
+            services.AddSingleton<IFeeService, FeeService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
