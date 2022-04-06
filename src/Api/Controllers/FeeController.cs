@@ -1,4 +1,5 @@
 ﻿using Core.Services.Interfaces;
+using Core.Settings.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -8,17 +9,18 @@ namespace FeeCalculator.Controllers
     public class FeeController : ControllerBase
     {
         public readonly IFeeService _feeService;
-        private readonly double _fee = 0.01;
+        private readonly double _feeValue;
 
-        public FeeController(IFeeService feeService)
+        public FeeController(IFeeService feeService, IEnvironmentSettings settings)
         {
             _feeService = feeService;
+            _feeValue = settings.Fee;
         }
 
         [HttpGet("/taxa")]
         public IActionResult GetFee()
         {
-            return Ok(_fee);
+            return Ok(_feeValue);
         }
 
         [HttpGet("/calculajuros")]
@@ -26,7 +28,7 @@ namespace FeeCalculator.Controllers
         {
             try
             {
-                return Ok(_feeService.Calculate(valorInicial, _fee, meses));
+                return Ok(_feeService.Calculate(valorInicial, _feeValue, meses));
             }
             catch (ArgumentException e)
             {

@@ -1,5 +1,7 @@
 using Core.Services;
 using Core.Services.Interfaces;
+using Core.Settings;
+using Core.Settings.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +25,9 @@ namespace FeeCalculator
 
             services.AddSwaggerGen();
 
-            services.AddSingleton<IFeeService, FeeService>();
+            services
+                .AddSingleton<IFeeService, FeeService>()
+                .AddSingleton<IEnvironmentSettings, EnvironmentSettings>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
