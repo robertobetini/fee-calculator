@@ -6,29 +6,29 @@ using System;
 namespace FeeCalculator.Controllers
 {
     [ApiController]
-    public class FeeController : ControllerBase
+    public class InterestController : ControllerBase
     {
-        public readonly IFeeService _feeService;
-        private readonly double _feeValue;
+        public readonly IInterestService _interestService;
+        private readonly double _interestValue;
 
-        public FeeController(IFeeService feeService, IEnvironmentSettings settings)
+        public InterestController(IInterestService feeService, IEnvironmentSettings settings)
         {
-            _feeService = feeService;
-            _feeValue = settings.Fee;
+            _interestService = feeService;
+            _interestValue = settings.Interest;
         }
 
         [HttpGet("/taxa")]
-        public IActionResult GetFee()
+        public IActionResult GetInterestValue()
         {
-            return Ok(_feeValue);
+            return Ok(_interestValue);
         }
 
         [HttpGet("/calculajuros")]
-        public IActionResult CalculateFee([FromQuery] decimal valorInicial, [FromQuery] int meses)
+        public IActionResult CalculateAmount([FromQuery] decimal valorInicial, [FromQuery] int meses)
         {
             try
             {
-                return Ok(_feeService.Calculate(valorInicial, _feeValue, meses));
+                return Ok(_interestService.Calculate(valorInicial, _interestValue, meses));
             }
             catch (ArgumentException e)
             {
