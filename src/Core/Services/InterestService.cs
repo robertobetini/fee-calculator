@@ -3,7 +3,7 @@ using System;
 
 namespace Core.Services
 {
-    public class FeeService : IFeeService
+    public class InterestService : IInterestService
     {
         public decimal Calculate(decimal valorInicial, double juros, int meses)
         {

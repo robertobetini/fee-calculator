@@ -1,6 +1,6 @@
 ﻿namespace Core.Services.Interfaces
 {
-    public interface IFeeService
+    public interface IInterestService
     {
         decimal Calculate(decimal valorInicial, double juros, int meses);
     }

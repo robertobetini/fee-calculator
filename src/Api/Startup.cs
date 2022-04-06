@@ -26,7 +26,7 @@ namespace FeeCalculator
             services.AddSwaggerGen();
 
             services
-                .AddSingleton<IFeeService, FeeService>()
+                .AddSingleton<IInterestService, InterestService>()
                 .AddSingleton<IEnvironmentSettings, EnvironmentSettings>();
         }
 

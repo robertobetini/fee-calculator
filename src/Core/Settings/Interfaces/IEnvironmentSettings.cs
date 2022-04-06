@@ -2,6 +2,6 @@
 {
     public interface IEnvironmentSettings
     {
-        public double Fee { get; }
+        public double Interest { get; }
     }
 }

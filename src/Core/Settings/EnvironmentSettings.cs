@@ -6,20 +6,20 @@ namespace Core.Settings
 {
     public class EnvironmentSettings : IEnvironmentSettings
     {
-        public double Fee
+        public double Interest
         {
             get
             {
-                var variableName = "FeeValue";
-                var fee = Environment.GetEnvironmentVariable(variableName);
+                var variableName = "InterestValue";
+                var interest = Environment.GetEnvironmentVariable(variableName);
 
-                if (string.IsNullOrWhiteSpace(fee))
+                if (string.IsNullOrWhiteSpace(interest))
                     throw new EnvironmentVariableException(variableName, "can't be null or empty.");
 
-                if (!double.TryParse(fee, out var feeValue))
+                if (!double.TryParse(interest, out var interestValue))
                     throw new EnvironmentVariableException(variableName, "must be a float.");
 
-                return feeValue;
+                return interestValue;
             }
         }
     }

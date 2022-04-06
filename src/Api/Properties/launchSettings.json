@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "FeeValue": "0.01"
+        "InterestValue": "0.01"
       }
     },
     "FeeCalculator": {
@@ -22,7 +22,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "FeeValue": "0.01"
+        "Interest": "0.01"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },

@@ -1,9 +1,9 @@
 ﻿using System;
 using Xunit;
 
-namespace Core.Tests.Services.FeeServiceTests.Methods
+namespace Core.Tests.Services.InterestServiceTests.Methods
 {
-    public class CalculateTests : FeeServiceTests
+    public class CalculateTests : InterestServiceTests
     {
         [Theory]
         [InlineData(0)]
