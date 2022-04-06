@@ -7,7 +7,7 @@ namespace Core.Services
     {
         public decimal Calculate(decimal valorInicial, double juros, int meses)
         {
-            if (valorInicial == decimal.Zero)
+            if (valorInicial <= decimal.Zero)
                 throw new ArgumentException($"'{nameof(valorInicial)}' must be greater than 0.");
 
             if (juros <= 0)
