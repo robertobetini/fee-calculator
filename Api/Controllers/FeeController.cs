@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -10,22 +11,41 @@ namespace FeeCalculator.Controllers
     [ApiController]
     public class FeeController : ControllerBase
     {
-        [HttpGet("/taxa")]
-        public double GetFee()
+        public readonly IFeeService _feeService;
+        private readonly double _fee = 0.01;
+
+        public FeeController(IFeeService feeService)
         {
-            return 0.1;
+            _feeService = feeService;
+        }
+
+        [HttpGet("/taxa")]
+        public IActionResult GetFee()
+        {
+            return Ok(_fee);
         }
 
         [HttpGet("/calculajuros")]
-        public double CalculateFee()
+        public IActionResult CalculateFee([FromQuery] decimal valorInicial, [FromQuery] int meses)
         {
-            return 0.1;
+            try
+            {
+                return Ok(_feeService.Calculate(valorInicial, _fee, meses));
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
         }
 
         [HttpGet("/showmethecode")]
-        public string GetRepositoryUrl()
+        public IActionResult GetRepositoryUrl()
         {
-            return "https://github.com/robertobetini/fee-calculator";
+            return Ok("https://github.com/robertobetini/fee-calculator");
         }
     }
 }
